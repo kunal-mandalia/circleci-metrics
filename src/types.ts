@@ -3,19 +3,19 @@ export type Workflows = {
   workflow_name: string,
 }
 
-export type Metric = {
+export type Build = {
   fail_reason: null | string,
   workflows: Workflows
 }
 
-export type MetricsSummaryReason = {
-  [fail_reason: string]: number
+export type ReasonSummary = {
+[fail_reason: string]: number
 }
 
-export type MetricsJobSummary = {
-  [job_name: string]: MetricsSummaryReason
+export type JobSummary = {
+  [job_name: string]: ReasonSummary
 }
 
-export type MetricsSummary = {
-  [workflow_name: string]: MetricsJobSummary
+export type BuildSummary = {
+  [workflow_name: string]: JobSummary
 }
