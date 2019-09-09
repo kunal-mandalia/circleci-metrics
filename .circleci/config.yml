@@ -28,17 +28,20 @@ jobs:
 
       - run: yarn install
 
+      - run:
+          name: Install JUnit coverage reporter
+          command: npm i --dev jest-junit
+
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
       - run:
           name: Run tests
           command: |
             mkdir -p ~/test-results/junit
-            yarn test --ci --reporters=default --reporters=jest-junit
+            yarn test --ci --runInBand --reporters=default --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT: ~/test-results/junit/results.xml
       - store_artifacts:
