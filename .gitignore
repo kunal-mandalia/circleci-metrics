@@ -2,3 +2,6 @@
 
 # config
 /src/config/*.json
+
+# test
+/test-results/*.xml
