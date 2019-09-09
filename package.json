@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "test:ci": "jest --ci --reporters=jest-junit",
     "dev": "ts-node src/app.ts",
     "repl": "ts-node > .load src/app.ts"
   },
@@ -29,6 +30,10 @@
   "devDependencies": {
     "@types/jest": "^24.0.18",
     "jest": "^24.9.0",
+    "jest-junit": "^8.0.0",
     "ts-jest": "^24.0.2"
+  },
+  "jest-junit": {
+    "output": "./test-results/junit/results.xml"
   }
 }
