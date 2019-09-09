@@ -36,12 +36,8 @@ export async function getFailedTests(builds: Build[]) {
     .filter(build => build.has_artifacts === true)
     .map(build => buildRequestForTestResults(build.build_num))
 
-  const results = await Promise.all(requests)
-  return results
+  const testResults = await Promise.all(requests)
+  return testResults
     .filter(result => result.data.exceptions !== null)
-    .map(result => result.data.tests)
-    .reduce((allTests, tests) => {
-      const failedTests = tests.filter(test => test.result === 'failure')
-      return [...allTests, ...failedTests]
-    }, [])
+    .map(result => result.data)
 }

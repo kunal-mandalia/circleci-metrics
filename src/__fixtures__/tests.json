@@ -1,0 +1,52 @@
+[
+  {
+    "tests": [
+      {
+        "classname": "should fail 1",
+        "file": "/tests/fail1.js",
+        "name": "always should fail 1",
+        "result": "failure",
+        "run_time": 0.002,
+        "message": "AssertionError: expected true to equal false\n    at Context.it (tests/fail.js:16:32)",
+        "source": "junit",
+        "source_type": "junit"
+      },
+      {
+        "classname": "should pass 1",
+        "file": "/tests/pass1.js",
+        "name": "always should pass 1",
+        "result": "success",
+        "run_time": 0.036,
+        "message": null,
+        "source": "junit",
+        "source_type": "junit"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "tests": [
+      {
+        "classname": "should fail 2",
+        "file": "/tests/fail2.js",
+        "name": "always should fail 2",
+        "result": "failure",
+        "run_time": 0.002,
+        "message": "AssertionError: expected true to equal false\n    at Context.it (tests/fail.js:16:32)",
+        "source": "junit",
+        "source_type": "junit"
+      },
+      {
+        "classname": "should pass 2",
+        "file": "/tests/pass2.js",
+        "name": "always should pass 2",
+        "result": "success",
+        "run_time": 0.036,
+        "message": null,
+        "source": "junit",
+        "source_type": "junit"
+      }
+    ],
+    "exceptions": []
+  }
+]
