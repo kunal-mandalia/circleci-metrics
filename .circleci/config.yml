@@ -43,7 +43,7 @@ jobs:
             mkdir -p ~/repo/test-results/junit
             yarn test --ci --runInBand --reporters=default --reporters=jest-junit
           environment:
-            JEST_JUNIT_OUTPUT: ~/test-results/junit/results.xml
+            JEST_JUNIT_OUTPUT: ~/repo/test-results/results.xml
       - store_artifacts:
           path: ~/repo/test-results
       - store_test_results:
