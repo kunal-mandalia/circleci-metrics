@@ -1,0 +1,52 @@
+[
+  {
+    "failed": true,
+    "workflows": {
+      "job_name": "test-e2e",
+      "job_id": "job_1",
+      "workflow_name": "build-test-deploy"
+    },
+    "build_num": 100,
+    "has_artifacts": true
+  },
+  {
+    "failed": true,
+    "workflows": {
+      "job_name": "test-e2e",
+      "job_id": "job_2",
+      "workflow_name": "build-test-deploy"
+    },
+    "build_num": 101,
+    "has_artifacts": true
+  },
+  {
+    "failed": false,
+    "workflows": {
+      "job_name": "deploy",
+      "job_id": "job_3",
+      "workflow_name": "build-test-deploy"
+    },
+    "build_num": 102,
+    "has_artifacts": true
+  },
+  {
+    "failed": true,
+    "workflows": {
+      "job_name": "test-unit",
+      "job_id": "job_4",
+      "workflow_name": "build-test-deploy"
+    },
+    "build_num": 103,
+    "has_artifacts": true
+  },
+  {
+    "failed": false,
+    "workflows": {
+      "job_name": "test-unit",
+      "job_id": "job_5",
+      "workflow_name": "build-test-deploy"
+    },
+    "build_num": 104,
+    "has_artifacts": true
+  }
+]

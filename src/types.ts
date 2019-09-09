@@ -1,21 +1,54 @@
+// circleci types
 export type Workflows = {
   job_name: string,
   workflow_name: string,
 }
 
-export type Metric = {
-  fail_reason: null | string,
-  workflows: Workflows
+export type Build = {
+  failed: boolean,
+  workflows: Workflows,
+  build_num: number,
+  has_artifacts: boolean,
 }
 
-export type MetricsSummaryReason = {
-  [fail_reason: string]: number
+export type Test = {
+  name: string,
+  file: string,
+  result: 'success' | 'failure',
 }
 
-export type MetricsJobSummary = {
-  [job_name: string]: MetricsSummaryReason
+export type BuildTests = {
+  tests: Test[],
+  exceptions: null | Array<string>
 }
 
-export type MetricsSummary = {
-  [workflow_name: string]: MetricsJobSummary
+// summarise aggregated data
+export type BuildSummary = {
+  count: number,
+  workflows: Workflow
+}
+
+type Workflow = {
+  [workflow_name: string]: {
+    count: number,
+    jobs: Job
+  }
+}
+
+type Job = {
+  [job_name: string]: {
+    count: number,
+    buildsId: number[],
+    failedTests?: {
+      count: number,
+      tests: FailedTests
+    }
+  }
+}
+
+type FailedTests = {
+  [test_name: string]: {
+    count: number,
+    filename: string
+  }
 }
