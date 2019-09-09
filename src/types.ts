@@ -5,7 +5,9 @@ export type Workflows = {
 
 export type Build = {
   fail_reason: null | string,
-  workflows: Workflows
+  workflows: Workflows,
+  build_num: number,
+  has_artifacts: boolean,
 }
 
 export type ReasonSummary = {
@@ -18,4 +20,22 @@ export type JobSummary = {
 
 export type BuildSummary = {
   [workflow_name: string]: JobSummary
+}
+
+type Test = {
+  name: string,
+  file: string,
+  result: 'success' | 'failure',
+}
+
+// export type FailedTests = {
+//   workflow_name: string,
+//   job_name: string,
+//   build: number,
+//   test_results?: TestResult[]
+// }
+
+export type BuildTests = {
+  tests: Test[],
+  exceptions: null | Array<string>
 }

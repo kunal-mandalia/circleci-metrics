@@ -28,13 +28,15 @@ const config = convict({
     env: 'CIRCLECI_TOKEN',
     sensitive: true
   }
-});
+})
 
 // Load environment dependent configuration
-const env = config.get('env');
-config.loadFile(join(__dirname, `${env}.json`));
+const env = config.get('env')
+config.loadFile(join(__dirname, `${env}.json`))
 
 // Perform validation
-config.validate({allowed: 'strict'});
+config.validate({allowed: 'strict'})
 
-export default config;
+console.info(config.toString())
+
+export default config
