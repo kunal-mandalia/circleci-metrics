@@ -37,7 +37,7 @@ jobs:
           name: run tests
           command: |
             mkdir -p ~/test-results/junit
-            yarn test --ci --runInBand --reporters=default --reporters=jest-junit --reporter-options --outputDirectory="~/test-results/junit"
+            yarn test --ci --runInBand --reporters=default --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT: ~/test-results/junit/results.xml
       - store_artifacts:
