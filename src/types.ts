@@ -39,14 +39,14 @@ type Job = {
   [job_name: string]: {
     count: number,
     buildsId: number[],
-    tests?: TestSummary
+    tests: TestSummary
   }
 }
 
 type TestSummary = {
   [test_name: string]: {
     count: number,
-    filename: string
+    file: string
   }
 }
 

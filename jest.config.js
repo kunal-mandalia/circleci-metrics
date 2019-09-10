@@ -1,5 +1,5 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  reporters: ["jest-junit"]
+  reporters: ["default", "jest-junit"]
 };
