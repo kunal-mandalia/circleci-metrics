@@ -1,7 +1,7 @@
 import {
-  Test,
   Build,
-  BuildSummary
+  BuildSummary,
+  TestsByBuild,
 } from './types'
 
 export function getBuildSummary<T extends Build[]>(builds: T): BuildSummary {
@@ -51,6 +51,6 @@ export function outputSummary(summary: BuildSummary) {
   console.info('')
 }
 
-export function appendTestResults<T extends BuildSummary, U extends Test[]>(buildSummary: T, testResults: U) {
-
+export function appendTestResults<T extends BuildSummary, U extends TestsByBuild>(buildSummary: T, testsByBuild: U) {
+  
 }

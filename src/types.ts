@@ -39,16 +39,17 @@ type Job = {
   [job_name: string]: {
     count: number,
     buildsId: number[],
-    failedTests?: {
-      count: number,
-      tests: FailedTests
-    }
+    tests?: TestSummary
   }
 }
 
-type FailedTests = {
+type TestSummary = {
   [test_name: string]: {
     count: number,
     filename: string
   }
+}
+
+export type TestsByBuild = {
+  [build_num: number]: Test[]
 }
