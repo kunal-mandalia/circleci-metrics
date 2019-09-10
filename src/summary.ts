@@ -1,7 +1,8 @@
 import {
-  Test,
   Build,
-  BuildSummary
+  BuildSummary,
+  TestsByBuild,
+  Test
 } from './types'
 
 export function getBuildSummary<T extends Build[]>(builds: T): BuildSummary {
@@ -23,7 +24,8 @@ export function getBuildSummary<T extends Build[]>(builds: T): BuildSummary {
         buildSummary.workflows[workflow_name].count++
         buildSummary.workflows[workflow_name].jobs[job_name] = {
           count: 1,
-          buildsId: [build_num]
+          buildsId: [build_num],
+          tests: {}
         }
       }
     } else {
@@ -32,7 +34,8 @@ export function getBuildSummary<T extends Build[]>(builds: T): BuildSummary {
         jobs: {
           [job_name]: {
             count: 1,
-            buildsId: [build_num]
+            buildsId: [build_num],
+            tests: {}
           }
         }
       }
@@ -51,6 +54,25 @@ export function outputSummary(summary: BuildSummary) {
   console.info('')
 }
 
-export function appendTestResults<T extends BuildSummary, U extends Test[]>(buildSummary: T, testResults: U) {
-
+export function appendTestResults<T extends BuildSummary, U extends TestsByBuild>(buildSummary: T, testsByBuild: U): BuildSummary {
+  const bs = Object.assign({}, buildSummary)
+  Object.keys(testsByBuild).forEach(buildId => {
+    Object.keys(bs.workflows).forEach(workflow => {
+      Object.keys(bs.workflows[workflow].jobs).forEach(job => {
+        if (bs.workflows[workflow].jobs[job].buildsId.includes(Number(buildId))) {
+          (testsByBuild[buildId] as Test[]).forEach(test => {
+            if (bs.workflows[workflow].jobs[job].tests[test.name]) {
+              bs.workflows[workflow].jobs[job].tests[test.name].count++
+            } else {
+              bs.workflows[workflow].jobs[job].tests[test.name] = {
+                count: 1,
+                file: test.file
+              }
+            }
+          })
+        }
+      })
+    })
+  })
+  return bs;
 }
