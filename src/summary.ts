@@ -56,11 +56,12 @@ export function outputSummary(summary: BuildSummary) {
 
 export function appendTestResults<T extends BuildSummary, U extends TestsByBuild>(buildSummary: T, testsByBuild: U): BuildSummary {
   const bs = Object.assign({}, buildSummary)
-    Object.keys(testsByBuild).forEach(buildId => {
-      Object.keys(bs.workflows).forEach(workflow => {
-        Object.keys(bs.workflows[workflow].jobs).forEach(job => {
-          if (bs.workflows[workflow].jobs[job].buildsId.includes(Number(buildId))) {
-            (testsByBuild[buildId] as Test[]).forEach(test => {
+  Object.keys(testsByBuild).forEach(buildId => {
+    Object.keys(bs.workflows).forEach(workflow => {
+      Object.keys(bs.workflows[workflow].jobs).forEach(job => {
+        if (bs.workflows[workflow].jobs[job].buildsId.includes(Number(buildId))) {
+          (testsByBuild[buildId] as Test[]).forEach(test => {
+            if (test.result === 'failure') {
               if (bs.workflows[workflow].jobs[job].tests[test.name]) {
                 bs.workflows[workflow].jobs[job].tests[test.name].count++
               } else {
@@ -69,10 +70,11 @@ export function appendTestResults<T extends BuildSummary, U extends TestsByBuild
                   file: test.file
                 }
               }
-            })
-          }
-        })
+            }
+          })
+        }
       })
+    })
   })
 
   return bs;
