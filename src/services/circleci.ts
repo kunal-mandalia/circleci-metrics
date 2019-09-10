@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
 import { config } from '../config'
-import { Build, BuildTests } from '../types'
+import { Build, BuildTests, TestsByBuild } from '../types'
 
 export function buildProjectEndpoint() {
   const username = config.get('USERNAME')
@@ -31,13 +31,19 @@ async function buildRequestForTestResults(build: number): Promise<AxiosResponse<
   return axios.get(testResultsEndpoint)
 }
 
-export async function getFailedTests(builds: Build[]) {
-  const requests = builds
+export async function getFailedTests(builds: Build[]): Promise<TestsByBuild> {
+  const buildsId = builds
     .filter(build => build.has_artifacts === true)
-    .map(build => buildRequestForTestResults(build.build_num))
+    .map(build => build.build_num)
+
+  const requests = buildsId
+    .map(buildId => buildRequestForTestResults(buildId))
 
   const testResults = await Promise.all(requests)
-  return testResults
-    .filter(result => result.data.exceptions !== null)
-    .map(result => result.data)
+  return testResults.reduce((testsByBuild, result, index) => {
+    if (result.data.exceptions !== null) {
+      testsByBuild[buildsId[index]] = result.data.tests
+    }
+    return testsByBuild
+  }, {})
 }

@@ -1,5 +1,5 @@
 import { getFailedProjectBuilds, getFailedTests } from './services/circleci'
-import { getBuildSummary, outputSummary } from './summary'
+import { getBuildSummary, appendTestResults, outputSummary } from './summary'
 
 async function main() {
   try {
@@ -8,9 +8,10 @@ async function main() {
     const failedTests = await getFailedTests(failedBuilds)
     console.info(failedTests)
 
-    const summary = getBuildSummary(failedBuilds)
+    const buildSummary = getBuildSummary(failedBuilds)
+    const buildSummaryWithTestResults = appendTestResults(buildSummary, failedTests)
 
-    outputSummary(summary)
+    outputSummary(buildSummaryWithTestResults)
   } catch (error) {
     console.error(error)
   }
