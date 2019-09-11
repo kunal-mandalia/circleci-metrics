@@ -47,9 +47,11 @@ What are the top causes of your build failing? Which tests commonly fail in CI? 
 }
 ```
 
+Note that failed tests metrics will appear only if you've setup test summaries in CircleCI.
+
 ## Environment variables
 
-```JSON
+```
 {
   "USERNAME": "<USERNAME>", // e.g. your github account username
   "PROJECT": "<PROJECT>", // e.g. your github repo name
