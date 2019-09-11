@@ -27,7 +27,13 @@ const config = convict({
     default: null,
     env: 'CIRCLECI_TOKEN',
     sensitive: true
-  }
+  },
+  'LIMIT': {
+    doc: 'Number of past builds to include',
+    format: Number,
+    default: 20,
+    env: 'LIMIT'
+  },
 })
 
 // Load environment dependent configuration

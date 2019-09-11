@@ -1,5 +1,6 @@
 {
-  "USERNAME": "<USERNAME>",
-  "PROJECT": "<PROJECT>",
-  "CIRCLECI_TOKEN": "<CIRCLECI_TOKEN>"
+  "USERNAME": "<USERNAME>", // e.g. your github account username
+  "PROJECT": "<PROJECT>", // e.g. your github repo name
+  "CIRCLECI_TOKEN": "<CIRCLECI_TOKEN>" // obtained from CircleCI
+  "LIMIT": 20 // number of failed builds to analyse, Maximum of 100
 }

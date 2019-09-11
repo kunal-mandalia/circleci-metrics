@@ -6,7 +6,7 @@ export function buildProjectEndpoint() {
   const username = config.get('USERNAME')
   const project = config.get('PROJECT')
   const circleToken = config.get('CIRCLECI_TOKEN')
-  const limit = 50
+  const limit = config.get('LIMIT')
   const buildStatus = 'failed'
 
   return `https://circleci.com/api/v1.1/project/github/${username}/${project}?circle-token=${circleToken}&limit=${limit}&offset=0&filter=${buildStatus}`
