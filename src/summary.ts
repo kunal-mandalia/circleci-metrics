@@ -49,7 +49,7 @@ export function getBuildSummary<T extends Build[]>(builds: T): BuildSummary {
 
 export function outputSummary(summary: BuildSummary) {
   console.info('')
-  console.info('Summary of failed builds by Workflow, Job, Reason:')
+  console.info('Summary of failed builds by Workflows, Jobs, Tests:')
   console.info(JSON.stringify(summary, null, 4))
   console.info('')
 }
